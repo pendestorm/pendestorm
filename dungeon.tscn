@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://troll.tscn" type="PackedScene" id=2]
 [ext_resource path="res://NPC/nenito.gd" type="Script" id=3]
 [ext_resource path="res://troll.png" type="Texture" id=4]
+[ext_resource path="res://Objects/Object.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 17.4866
@@ -43,3 +44,6 @@ texture = ExtResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Nenito"]
 position = Vector2( 4.25171, 22.1832 )
 shape = SubResource( 1 )
+
+[node name="Object" parent="." instance=ExtResource( 5 )]
+keyword_identifier = "key"

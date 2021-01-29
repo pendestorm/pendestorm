@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Objects/object.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+
+[node name="Object" type="Area2D"]
+position = Vector2( 960.06, 175.129 )
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=[
+"object",
+]]
+position = Vector2( -480.194, 81.0718 )
+shape = SubResource( 2 )
