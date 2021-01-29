@@ -21,4 +21,3 @@ func _process(_delta):
 		match object_keyword_identifier:
 			"key": modulate = Color.aqua
 		nearest_object.queue_free()
-		
