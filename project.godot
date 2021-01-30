@@ -40,6 +40,10 @@ window/stretch/aspect="expand"
 
 singletons=[ "res://git_api.gdnlib" ]
 
+[gui]
+
+theme/custom_font="res://GUI/DimboRegular_72.tres"
+
 [image_loader]
 
 filter=false
