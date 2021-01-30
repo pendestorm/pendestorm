@@ -4,9 +4,14 @@ onready var timer = $GameEndTimer
 onready var time_left_text = $CanvasLayer/TimeLeftLabel
 onready var game_over_label = $CanvasLayer/GameOverLabel
 
+func _ready():
+	SharedVariables.scene = self
+
 func _process(_delta):
 	time_left_text.text = "%d"%timer.time_left
 	
+func add_nenito_to_game(nenito):
+	$Walls.add_child(nenito)
 
 
 func _on_GameEndTimer_timeout():

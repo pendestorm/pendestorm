@@ -19,6 +19,7 @@ position = Vector2( 0, -18.7972 )
 scale = Vector2( 0.15, 0.15 )
 texture = ExtResource( 2 )
 hframes = 8
+frame = 6
 
 [node name="ObjectDetector" type="Area2D" parent="."]
 
@@ -33,5 +34,6 @@ shape = SubResource( 2 )
 current = true
 
 [node name="Light2D" type="Light2D" parent="."]
+rotation = 0.720821
 texture = ExtResource( 3 )
 offset = Vector2( 697.265, -47.2021 )
