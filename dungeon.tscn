@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://troll.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://GUI/DimboRegular_72.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Music/pendestorm_theme_song.ogg" type="AudioStream" id=8]
 [ext_resource path="res://Music/Pendestorm bad ending.wav" type="AudioStream" id=9]
+[ext_resource path="res://Objects/RescueNenePlace.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 172
@@ -53,7 +54,7 @@ keyword_identifier = "key"
 color = Color( 0, 0, 0, 1 )
 
 [node name="GameEndTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 180.0
 one_shot = true
 autostart = true
 
@@ -93,4 +94,7 @@ bus = "Music"
 pause_mode = 2
 stream = ExtResource( 9 )
 bus = "Music"
+
+[node name="RescueNenePlace" parent="." instance=ExtResource( 10 )]
+position = Vector2( 833.617, 55.1147 )
 [connection signal="timeout" from="GameEndTimer" to="." method="_on_GameEndTimer_timeout"]

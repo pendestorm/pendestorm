@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const MOTION_SPEED = 160 # Pixels/second.
 export var nenitos = []
+export(Array,String) var objects_in_hand
 onready var object_detector = $ObjectDetector
 onready var sprite = $Sprite
 
@@ -9,6 +10,7 @@ signal follow_me
 signal stop
 
 func _ready():
+	SharedVariables.player = self
 	#Esto es una prueba
 	add_nenito(get_parent().get_node("Nenito"))
 	add_nenito(get_parent().get_node("Nenito2"))
@@ -68,6 +70,7 @@ func _process(_delta):
 	$Light2D.look_at(get_global_mouse_position())
 	if Input.is_action_just_pressed("action"):
 		var objects = object_detector.get_overlapping_areas()
+		if objects.size() < 1: return
 		var nearest_object = objects[0]
 		var object_keyword_identifier = nearest_object.keyword_identifier
 		match object_keyword_identifier:
