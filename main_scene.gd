@@ -3,6 +3,7 @@ extends Node2D
 onready var timer = $GameEndTimer
 onready var time_left_text = $CanvasLayer/TimeLeftLabel
 onready var game_over_label = $CanvasLayer/GameOverLabel
+onready var victory_label = $CanvasLayer/VictoryLabel
 
 func _ready():
 	SharedVariables.scene = self
