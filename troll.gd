@@ -93,4 +93,8 @@ func _process(_delta):
 		sprite.frame_coords = Vector2(7,0)
 		light2d.rotation_degrees = 90
 		
+func save_nenitos():
+	for n in nenitos:
+		disconnect("follow_me", n, "_on_Troll_follow_me")
+		disconnect("stop", n, "_on_Troll_stop")
 	
