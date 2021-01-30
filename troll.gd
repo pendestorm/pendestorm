@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const MOTION_SPEED = 160 # Pixels/second.
+const MOTION_SPEED = 260 # Pixels/second.
 export var nenitos = []
 export(Array,String) var objects_in_hand
 onready var object_detector = $ObjectDetector
@@ -13,8 +13,8 @@ signal stop
 func _ready():
 	SharedVariables.player = self
 	#Esto es una prueba
-	for nenito in get_tree().get_nodes_in_group("nenitos"):
-		add_nenito(nenito)
+#	for nenito in get_tree().get_nodes_in_group("nenitos"):
+#		add_nenito(nenito)
 
 
 func _physics_process(_delta):
