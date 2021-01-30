@@ -19,3 +19,5 @@ position = Vector2( 4.25171, 22.1832 )
 shape = SubResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
