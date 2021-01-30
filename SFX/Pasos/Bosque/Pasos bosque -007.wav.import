@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Pasos bosque -007.wav-5ba5da7ee6b60db8b094d3ce6855fdc3.sample"
+
+[deps]
+
+source_file="res://SFX/Pasos/Bosque/Pasos bosque -007.wav"
+dest_files=[ "res://.import/Pasos bosque -007.wav-5ba5da7ee6b60db8b094d3ce6855fdc3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

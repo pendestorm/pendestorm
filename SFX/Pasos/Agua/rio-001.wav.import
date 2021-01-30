@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/rio-001.wav-b2171f2adc1395dad55eaa8147321a69.sample"
+
+[deps]
+
+source_file="res://SFX/Pasos/Agua/rio-001.wav"
+dest_files=[ "res://.import/rio-001.wav-b2171f2adc1395dad55eaa8147321a69.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

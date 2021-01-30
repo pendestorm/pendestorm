@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Menu 3 .wav-24fc8ea65676c2c1954d2a662bb9cbae.sample"
+
+[deps]
+
+source_file="res://SFX/ControlesDelJugadorYMenu/Menu 3 .wav"
+dest_files=[ "res://.import/Menu 3 .wav-24fc8ea65676c2c1954d2a662bb9cbae.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

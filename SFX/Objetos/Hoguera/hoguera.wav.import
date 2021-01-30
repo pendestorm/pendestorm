@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/hoguera.wav-9f6ca6f17762927c523d553a1e96c55b.sample"
+
+[deps]
+
+source_file="res://SFX/Objetos/Hoguera/hoguera.wav"
+dest_files=[ "res://.import/hoguera.wav-9f6ca6f17762927c523d553a1e96c55b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
