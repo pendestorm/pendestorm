@@ -13,8 +13,8 @@ signal stop
 func _ready():
 	SharedVariables.player = self
 	#Esto es una prueba
-	add_nenito(get_parent().get_node("Nenito"))
-	add_nenito(get_parent().get_node("Nenito2"))
+	for nenito in get_tree().get_nodes_in_group("nenitos"):
+		add_nenito(nenito)
 
 
 func _physics_process(_delta):
@@ -34,6 +34,7 @@ func _physics_process(_delta):
 func add_nenito(nenito):
 	nenitos.append(nenito)
 	nenito.line_pos = nenitos.size()
+	add_collision_exception_with(nenito)
 	connect("follow_me", nenito, "_on_Troll_follow_me")
 	connect("stop", nenito, "_on_Troll_stop")
 	
