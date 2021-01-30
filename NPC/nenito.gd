@@ -61,4 +61,5 @@ func explotar():
 	$CPUParticles2D.emitting = true
 	
 func color_change(color):
+	pilotin = color
 	$Sprite.material.set_shader_param("pilotin",color)
