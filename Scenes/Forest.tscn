@@ -7,12 +7,12 @@
 [ext_resource path="res://SFX/ClimaBackground/Lluvia .wav" type="AudioStream" id=5]
 [ext_resource path="res://Music/Pendestorm opening.wav" type="AudioStream" id=6]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=2]
 resource_name = "audio_loop"
 length = 227.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Rain:playing")
+tracks/0/path = NodePath("RainPlayer:playing")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -24,7 +24,7 @@ tracks/0/keys = {
 "values": [ false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Music:playing")
+tracks/1/path = NodePath("MusicPlayer:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -36,7 +36,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 tracks/2/type = "audio"
-tracks/2/path = NodePath("Music")
+tracks/2/path = NodePath("MusicPlayer")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -50,7 +50,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 )
 }
 tracks/3/type = "audio"
-tracks/3/path = NodePath("Rain")
+tracks/3/path = NodePath("RainPlayer")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -64,7 +64,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 )
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Music:volume_db")
+tracks/4/path = NodePath("MusicPlayer:volume_db")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -76,7 +76,7 @@ tracks/4/keys = {
 "values": [  ]
 }
 tracks/5/type = "audio"
-tracks/5/path = NodePath("Rain2")
+tracks/5/path = NodePath("RainPlayer2")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -90,16 +90,28 @@ tracks/5/keys = {
 "times": PoolRealArray( 186.3 )
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Rain:volume_db")
+tracks/6/path = NodePath("RainPlayer:volume_db")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 187.7, 191.2 ),
+"times": PoolRealArray( 0, 187.7, 191.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, -80.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("RainPlayer2:volume_db")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 226.6, 227.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.0, -80.0 ]
+"values": [ 0.0, -8.0 ]
 }
 
 [node name="Forest" type="Navigation2D"]
@@ -135,7 +147,7 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Rain" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -79.7181
+volume_db = -67.1256
 
 [node name="Rain2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
@@ -148,4 +160,4 @@ stream = ExtResource( 6 )
 volume_db = -79.622
 
 [node name="AudioLoopPlayer" type="AnimationPlayer" parent="."]
-anims/audio_loop = SubResource( 1 )
+anims/audio_loop = SubResource( 2 )
