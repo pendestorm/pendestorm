@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pendestorm_theme_song.ogg-854ac694cf51d4da0866ea575fc026cd.oggstr"
+
+[deps]
+
+source_file="res://Music/pendestorm_theme_song.ogg"
+dest_files=[ "res://.import/pendestorm_theme_song.ogg-854ac694cf51d4da0866ea575fc026cd.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
