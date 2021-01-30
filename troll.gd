@@ -1,11 +1,12 @@
 extends KinematicBody2D
 
-const MOTION_SPEED = 260 # Pixels/second.
+const MOTION_SPEED = 160 # Pixels/second.
 export var nenitos = []
 export(Array,String) var objects_in_hand
 onready var object_detector = $ObjectDetector
 onready var sprite = $Sprite
 onready var light2d = $Light2D
+onready var tween : Tween = $Tween
 
 signal follow_me
 signal stop
@@ -13,8 +14,8 @@ signal stop
 func _ready():
 	SharedVariables.player = self
 	#Esto es una prueba
-#	for nenito in get_tree().get_nodes_in_group("nenitos"):
-#		add_nenito(nenito)
+	for nenito in get_tree().get_nodes_in_group("nenitos"):
+		add_nenito(nenito)
 
 
 func _physics_process(_delta):
@@ -68,29 +69,46 @@ func _process(_delta):
 		left = true
 	elif Input.get_action_strength("move_left") < Input.get_action_strength("move_right"):
 		right = true
+	var current_rotation = light2d.rotation_degrees
 	if down and right:
 		sprite.frame_coords = Vector2(6,0)
-		light2d.rotation_degrees = 40
+		var degrees = select_between_degrees(light2d.rotation_degrees,40)
+		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
 	elif down and left:
 		sprite.frame_coords = Vector2(0,0)
-		light2d.rotation_degrees = 140
+		var degrees = select_between_degrees(light2d.rotation_degrees,140)
+		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
 	elif up and right:
 		sprite.frame_coords = Vector2(4,0)
-		light2d.rotation_degrees = 320
+		var degrees = select_between_degrees(light2d.rotation_degrees,-40)
+		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
 	elif up and left:
 		sprite.frame_coords = Vector2(2,0)
-		light2d.rotation_degrees = 230
+		var degrees = select_between_degrees(light2d.rotation_degrees,-130)
+		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
 	elif left:
 		sprite.frame_coords = Vector2(1,0)
-		light2d.rotation_degrees = 180
+		var degrees = select_between_degrees(light2d.rotation_degrees,180)
+		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
 	elif up:
 		sprite.frame_coords = Vector2(3,0)
-		light2d.rotation_degrees = 270
+		var degrees = select_between_degrees(light2d.rotation_degrees,-90)
+		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
 	elif right:
 		sprite.frame_coords = Vector2(5,0)
-		light2d.rotation_degrees = 0
+		var degrees = select_between_degrees(light2d.rotation_degrees,0)
+		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
 	elif down:
 		sprite.frame_coords = Vector2(7,0)
-		light2d.rotation_degrees = 90
+		var degrees = select_between_degrees(light2d.rotation_degrees,90)
+		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
+	tween.start()
 		
 	
+func select_between_degrees(current,next):
+	if current == next: return next
+	var contrary_next = 360+next if next < 0 else next-360
+	if abs(current-next) < abs(current-contrary_next):
+		return next
+	else:
+		return contrary_next
