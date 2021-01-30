@@ -14,6 +14,7 @@ func _physics_process(_delta):
 	move_and_slide(motion)
 
 func _process(_delta):
+	$Light2D.look_at(get_global_mouse_position())
 	if Input.is_action_just_pressed("action"):
 		var objects = object_detector.get_overlapping_areas()
 		var nearest_object = objects[0]

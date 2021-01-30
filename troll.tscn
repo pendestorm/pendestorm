@@ -2,7 +2,7 @@
 
 [ext_resource path="res://troll.gd" type="Script" id=1]
 [ext_resource path="res://troll.png" type="Texture" id=2]
-[ext_resource path="res://Lights/light.png" type="Texture" id=3]
+[ext_resource path="res://Lights/light-lantern.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 26.3083
@@ -31,3 +31,4 @@ current = true
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 3 )
+offset = Vector2( 697.265, -47.2021 )
