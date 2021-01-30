@@ -1,13 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://troll.tscn" type="PackedScene" id=2]
-[ext_resource path="res://NPC/nenito.gd" type="Script" id=3]
-[ext_resource path="res://troll.png" type="Texture" id=4]
+[ext_resource path="res://Nenito.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/Object.tscn" type="PackedScene" id=5]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 17.4866
 
 [node name="Dungeon" type="Node2D"]
 
@@ -33,20 +29,13 @@ tile_data = PoolIntArray( -917493, 2, -1200553578, -917492, 2, -1200553578, -917
 [node name="Troll" parent="Walls" instance=ExtResource( 2 )]
 position = Vector2( 393.504, 290.944 )
 
-[node name="Nenito" type="KinematicBody2D" parent="."]
-position = Vector2( 760.828, 137.198 )
-script = ExtResource( 3 )
-
-[node name="Sprite" type="Sprite" parent="Nenito"]
-modulate = Color( 1, 0, 0, 1 )
-texture = ExtResource( 4 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Nenito"]
-position = Vector2( 4.25171, 22.1832 )
-shape = SubResource( 1 )
-
 [node name="Object" parent="." instance=ExtResource( 5 )]
 keyword_identifier = "key"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0, 0, 0, 1 )
+
+[node name="Nenito" parent="." instance=ExtResource( 3 )]
+
+[node name="Nenito2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 386.344, 341.154 )
