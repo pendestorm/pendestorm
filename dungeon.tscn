@@ -14,7 +14,7 @@ size = 172
 use_filter = true
 font_data = ExtResource( 4 )
 
-[node name="Dungeon" type="Node2D"]
+[node name="Dungeon" type="Navigation2D"]
 script = ExtResource( 6 )
 
 [node name="Floor" type="TileMap" parent="."]
@@ -39,16 +39,16 @@ tile_data = PoolIntArray( -917493, 2, -1200553578, -917492, 2, -1200553578, -917
 [node name="Troll" parent="Walls" instance=ExtResource( 2 )]
 position = Vector2( 394.725, 293.671 )
 
+[node name="Nenito" parent="Walls" instance=ExtResource( 3 )]
+
+[node name="Nenito2" parent="Walls" instance=ExtResource( 3 )]
+position = Vector2( 386.344, 341.154 )
+
 [node name="Object" parent="." instance=ExtResource( 5 )]
 keyword_identifier = "key"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0, 0, 0, 1 )
-
-[node name="Nenito" parent="." instance=ExtResource( 3 )]
-
-[node name="Nenito2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 386.344, 341.154 )
 
 [node name="GameEndTimer" type="Timer" parent="."]
 wait_time = 180.0

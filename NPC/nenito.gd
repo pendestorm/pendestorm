@@ -4,7 +4,7 @@ var do_not_follow
 var line_pos
 export(float) var character_speed = 400.0
 var path = []
-onready var navigation_2d = $Navigation2D
+onready var navigation_2d = get_parent().get_parent()
 
 func _ready():
 	pass # Replace with function body.
@@ -40,7 +40,8 @@ func _on_Troll_follow_me(leader_position):
 #	print(path, self.position, leader_position)
 	# The first point is always the start_position.
 	# We don't need it in this example as it corresponds to the character's position.
-	path.remove(0)
+	if path.size() > 0:
+		path.remove(0)
 	set_process(true)
 
 func _on_Troll_stop():

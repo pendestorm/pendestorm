@@ -9,8 +9,8 @@ signal stop
 
 func _ready():
 	#Esto es una prueba
-	add_nenito(get_parent().get_parent().get_node("Nenito"))
-	add_nenito(get_parent().get_parent().get_node("Nenito2"))
+	add_nenito(get_parent().get_node("Nenito"))
+	add_nenito(get_parent().get_node("Nenito2"))
 
 
 func _physics_process(_delta):
