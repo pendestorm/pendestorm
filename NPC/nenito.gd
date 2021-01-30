@@ -9,7 +9,7 @@ var motion = Vector2()
 func _init():
 	add_to_group("nenitos")
 func _ready():
-	pass # Replace with function body.
+	pass
 	
 func _process(delta):
 	var walk_distance = character_speed * delta
@@ -48,3 +48,7 @@ func _on_Troll_follow_me(leader_position):
 
 func _on_Troll_stop():
 	pass # Replace with function body.
+	
+func explotar():
+	$Sprite.hide()
+	$CPUParticles2D.emitting = true

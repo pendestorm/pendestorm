@@ -37,3 +37,18 @@ current = true
 rotation = 0.720821
 texture = ExtResource( 3 )
 offset = Vector2( 697.265, -47.2021 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2( 229.161, -640.264 )
+amount = 2000
+lifetime = 4.0
+preprocess = 5.0
+speed_scale = 2.5
+randomness = 0.58
+emission_shape = 2
+emission_rect_extents = Vector2( 800, 1 )
+flag_align_y = true
+direction = Vector2( -1, 0 )
+initial_velocity = 100.0
+scale_amount = 2.0
+color = Color( 0.615686, 1, 1, 1 )
