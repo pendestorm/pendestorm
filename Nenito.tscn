@@ -4,7 +4,7 @@
 [ext_resource path="res://troll.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 17.4866
+radius = 16.3376
 
 [node name="Nenito" type="KinematicBody2D"]
 position = Vector2( 320.828, 283.198 )
@@ -12,12 +12,10 @@ script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 0, 0, 1 )
+show_behind_parent = true
+position = Vector2( -5.59674, -28.9942 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 4.25171, 22.1832 )
+position = Vector2( 0.0155602, 0.75103 )
 shape = SubResource( 1 )
-
-[node name="Tween" type="Tween" parent="."]
-
-[node name="Navigation2D" type="Navigation2D" parent="."]

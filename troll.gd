@@ -9,9 +9,9 @@ signal stop
 
 func _ready():
 	#Esto es una prueba
-	add_nenito(get_parent().get_node("Nenito"))
-	add_nenito(get_parent().get_node("Nenito2"))
-
+	var nenitos = get_tree().get_nodes_in_group("nenitos")
+	for nene in nenitos:
+		add_nenito(nene)
 
 func _physics_process(_delta):
 	var motion = Vector2()
@@ -19,7 +19,7 @@ func _physics_process(_delta):
 	motion.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	motion.y /= 2
 	motion = motion.normalized() * MOTION_SPEED
-	#warning-ignore:return_value_discarded
+
 	move_and_slide(motion)
 	if motion != Vector2(0,0):
 		emit_signal("follow_me", self.global_position)
