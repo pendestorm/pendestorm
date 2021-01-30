@@ -2,12 +2,16 @@ extends KinematicBody2D
 
 const MOTION_SPEED = 160 # Pixels/second.
 export var nenitos = []
+onready var object_detector = $ObjectDetector
+
 signal follow_me
 signal stop
 
 func _ready():
 	add_nenito(get_parent().get_parent().get_node("Nenito"))
 	add_nenito(get_parent().get_parent().get_node("Nenito2"))
+
+
 func _physics_process(_delta):
 	var motion = Vector2()
 	motion.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -29,3 +33,13 @@ func add_nenito(nenito):
 	
 func lose_nenito(object):
 	nenitos.pop_back()
+
+func _process(_delta):
+	$Light2D.look_at(get_global_mouse_position())
+	if Input.is_action_just_pressed("action"):
+		var objects = object_detector.get_overlapping_areas()
+		var nearest_object = objects[0]
+		var object_keyword_identifier = nearest_object.keyword_identifier
+		match object_keyword_identifier:
+			"key": modulate = Color.aqua
+		nearest_object.queue_free()
