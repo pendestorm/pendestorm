@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://GUI/DimboRegular_72.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Scenes/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://Music/Pendestorm opening.wav" type="AudioStream" id=3]
 
 [sub_resource type="ImageTexture" id=1]
 size = Vector2( 300, 150 )
@@ -42,4 +43,8 @@ text = "Jugar"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]

@@ -3,15 +3,16 @@ extends KinematicBody2D
 const MOTION_SPEED = 160 # Pixels/second.
 export var nenitos = []
 onready var object_detector = $ObjectDetector
+onready var sprite = $Sprite
 
 signal follow_me
 signal stop
 
 func _ready():
 	#Esto es una prueba
-	var nenitos = get_tree().get_nodes_in_group("nenitos")
-	for nene in nenitos:
-		add_nenito(nene)
+	add_nenito(get_parent().get_node("Nenito"))
+	add_nenito(get_parent().get_node("Nenito2"))
+
 
 func _physics_process(_delta):
 	var motion = Vector2()
@@ -19,7 +20,35 @@ func _physics_process(_delta):
 	motion.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	motion.y /= 2
 	motion = motion.normalized() * MOTION_SPEED
-
+	var down
+	var up
+	var left
+	var right
+	if Input.get_action_strength("move_down") > Input.get_action_strength("move_up"):
+		down = true
+	elif Input.get_action_strength("move_down") < Input.get_action_strength("move_up"):
+		up = true
+	if Input.get_action_strength("move_left") > Input.get_action_strength("move_right"):
+		left = true
+	elif Input.get_action_strength("move_left") < Input.get_action_strength("move_right"):
+		right = true
+	if down and right:
+		sprite.frame_coords = Vector2(6,0)
+	elif down and left:
+		sprite.frame_coords = Vector2(0,0)
+	elif up and right:
+		sprite.frame_coords = Vector2(4,0)
+	elif up and left:
+		sprite.frame_coords = Vector2(2,0)
+	elif left:
+		sprite.frame_coords = Vector2(1,0)
+	elif up:
+		sprite.frame_coords = Vector2(3,0)
+	elif right:
+		sprite.frame_coords = Vector2(5,0)
+	elif down:
+		sprite.frame_coords = Vector2(7,0)
+	#warning-ignore:return_value_discarded
 	move_and_slide(motion)
 	if motion != Vector2(0,0):
 		emit_signal("follow_me", self.global_position)
