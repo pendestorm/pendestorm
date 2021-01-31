@@ -18,7 +18,6 @@ func _ready():
 	
 func _process(delta):
 	if Engine.editor_hint: return
-	z_index = int(position.y)
 	var walk_distance = character_speed * delta
 	move_along_path(walk_distance)
 	

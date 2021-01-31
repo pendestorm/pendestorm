@@ -27,7 +27,6 @@ func _ready():
 
 
 func _physics_process(_delta):
-	z_index = int(position.y)
 	var motion = Vector2()
 	motion.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	motion.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
