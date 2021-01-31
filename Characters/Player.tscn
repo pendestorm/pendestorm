@@ -1,7 +1,7 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Characters/Player.gd" type="Script" id=1]
-[ext_resource path="res://Characters/nenito_caminata.png" type="Texture" id=2]
+[ext_resource path="res://Characters/nenito_caminata2.png" type="Texture" id=2]
 [ext_resource path="res://Lights/light-lantern.png" type="Texture" id=3]
 [ext_resource path="res://OtherImages/lluvia1.png" type="Texture" id=4]
 [ext_resource path="res://SFX/Pasos/Bosque/Pasos bosque -001.wav" type="AudioStream" id=5]
@@ -27,6 +27,92 @@ radius = 26.3083
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 16.0
+
+[sub_resource type="Animation" id=9]
+resource_name = "down_left_walk"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 17, 18, 19, 18 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "choose_walk_sound"
+} ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "down_right_walk"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 17, 18, 19, 18 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "choose_walk_sound"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "down_walk"
@@ -298,9 +384,10 @@ pasos_agua = [ ExtResource( 10 ), ExtResource( 8 ), ExtResource( 18 ), ExtResour
 position = Vector2( 0, -18.7972 )
 scale = Vector2( 0.15, 0.15 )
 texture = ExtResource( 2 )
-vframes = 4
+flip_h = true
+vframes = 5
 hframes = 4
-frame = 1
+frame = 17
 
 [node name="ObjectDetector" type="Area2D" parent="."]
 position = Vector2( 8.48528, -3.53553 )
@@ -342,6 +429,8 @@ color = Color( 0.615686, 1, 1, 1 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/down_left_walk = SubResource( 9 )
+anims/down_right_walk = SubResource( 10 )
 anims/down_walk = SubResource( 3 )
 anims/left_walk = SubResource( 4 )
 anims/right_walk = SubResource( 5 )

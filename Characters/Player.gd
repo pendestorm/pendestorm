@@ -26,8 +26,8 @@ export(Array,AudioStream) var pasos_agua
 func _ready():
 	SharedVariables.player = self
 	#Esto es una prueba
-	for nenito in get_tree().get_nodes_in_group("nenitos"):
-		add_nenito(nenito)
+	#for nenito in get_tree().get_nodes_in_group("nenitos"):
+		#add_nenito(nenito)
 
 
 func _physics_process(_delta):
@@ -38,7 +38,10 @@ func _physics_process(_delta):
 	motion = motion.normalized() * MOTION_SPEED
 	#warning-ignore:return_value_discarded
 	move_and_slide(motion)
-
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision.collider.is_in_group("nenitos"):
+			add_nenito(collision.collider)
 	if OS.get_ticks_msec() > last_time_frame + 100:
 		if motion != Vector2(0,0):
 			emit_signal("follow_me", self.global_position)
@@ -53,7 +56,8 @@ func add_nenito(nenito):
 	connect("stop", nenito, "_on_Troll_stop")
 	
 func lose_nenito(object):
-	nenitos.pop_back()
+	#nenitos.pop_back()
+	nenitos.erase(object)
 
 func _process(_delta):
 	#$Light2D.look_at(get_global_mouse_position())
@@ -61,22 +65,21 @@ func _process(_delta):
 		var wtm = get_parent().world_to_map(position)
 		print(wtm," ",get_parent().get_parent().get_node("Floor").get_cellv(wtm))
 		var objects = object_detector.get_overlapping_areas()
-		if objects.size() < 1: return
-		var nearest_object = objects[0]
-		var object_keyword_identifier = nearest_object.keyword_identifier
-		objects_in_hand.append(object_keyword_identifier)
-		match object_keyword_identifier:
-			"key": modulate = Color.aqua
-			"linterna": 
-				$SpecialSoundPlayer.stream = linterna_sfx
-				$SpecialSoundPlayer.play()
-				light2d.show()
-			"cuerda": 
-				$SpecialSoundPlayer.stream = cuerda_sfx
-				$SpecialSoundPlayer.play()
-				
-				
-		nearest_object.queue_free()
+		if objects.size() > 0:
+			var nearest_object = objects[0]
+			var object_keyword_identifier = nearest_object.keyword_identifier
+			objects_in_hand.append(object_keyword_identifier)
+			match object_keyword_identifier:
+				"key": modulate = Color.aqua
+				"linterna": 
+					$SpecialSoundPlayer.stream = linterna_sfx
+					$SpecialSoundPlayer.play()
+					light2d.show()
+				"cuerda": 
+					$SpecialSoundPlayer.stream = cuerda_sfx
+					$SpecialSoundPlayer.play()
+					
+			nearest_object.queue_free()
 		
 	#Sprite movement
 	var down
@@ -94,12 +97,12 @@ func _process(_delta):
 	var current_rotation = light2d.rotation_degrees
 	if down and right:
 		#sprite.frame_coords = Vector2(6,0)
-		anim_player.play("down_walk")
+		anim_player.play("down_right_walk")
 		var degrees = select_between_degrees(light2d.rotation_degrees,40)
 		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
 	elif down and left:
 		#sprite.frame_coords = Vector2(0,0)
-		anim_player.play("down_walk")
+		anim_player.play("down_left_walk")
 		var degrees = select_between_degrees(light2d.rotation_degrees,140)
 		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
 	elif up and right:
@@ -143,6 +146,8 @@ func _process(_delta):
 				sprite.frame = 8
 			12,13,14,15:
 				sprite.frame = 12
+			16,17,18,18:
+				sprite.frame = 16
 	tween.start()
 		
 func save_nenitos():
@@ -150,6 +155,8 @@ func save_nenitos():
 		disconnect("follow_me", n, "_on_Troll_follow_me")
 		disconnect("stop", n, "_on_Troll_stop")
 		n.saved = true
+		lose_nenito(n)
+		n.hide()
 	
 func select_between_degrees(current,next):
 	if current == next: return next

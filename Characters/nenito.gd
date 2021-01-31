@@ -47,7 +47,7 @@ func move_along_path(distance):
 #	draw_line(Vector2(0,0), motion*1000, Color.white)
 
 func _on_Troll_follow_me(leader_position):
-	if Engine.editor_hint: return
+	if Engine.editor_hint or saved: return
 	path = navigation_2d.get_simple_path(self.position, leader_position, true)
 #	print(path, self.position, leader_position)
 	if path.size() > 0:
@@ -72,7 +72,7 @@ func voz_pitch_change(pitch):
 	$AudioStreamPlayer2D.play()
 
 func _on_NenitoVoiceTimer_timeout():
-	if Engine.editor_hint: return
+	if Engine.editor_hint or saved: return
 	$NenitoVoiceTimer.start(rng.randi_range(10,20))
 	$AudioStreamPlayer2D.play()
 	
