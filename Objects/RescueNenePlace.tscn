@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Objects/RescueNenePlace.gd" type="Script" id=1]
 [ext_resource path="res://OtherImages/icon.png" type="Texture" id=2]
 [ext_resource path="res://GUI/Dimbo Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://SFX/Objetos/Machete (no el actor).wav" type="AudioStream" id=4]
+[ext_resource path="res://SFX/Objetos/Hielo desquebrajandose.wav" type="AudioStream" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 38.1671
@@ -78,7 +79,36 @@ use_filter = true
 font_data = ExtResource( 3 )
 
 [sub_resource type="Animation" id=7]
-resource_name = "machete"
+resource_name = "antorcha"
+length = 1.5
+tracks/0/type = "audio"
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=8]
 length = 1.5
 tracks/0/type = "audio"
 tracks/0/path = NodePath("AudioStreamPlayer")
@@ -148,10 +178,11 @@ __meta__ = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource( 5 )
 pitch_scale = 2.0
 
 [node name="ObjectSound" type="AnimationPlayer" parent="."]
-anims/machete = SubResource( 7 )
+anims/antorcha = SubResource( 7 )
+anims/machete = SubResource( 8 )
 [connection signal="body_entered" from="." to="." method="_on_RescueNenePlace_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_RescueNenePlace_body_exited"]
