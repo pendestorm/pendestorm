@@ -30,7 +30,7 @@ func _physics_process(_delta):
 	#warning-ignore:return_value_discarded
 	move_and_slide(motion)
 
-	if OS.get_ticks_msec() > last_time_frame + 200:
+	if OS.get_ticks_msec() > last_time_frame + 100:
 		if motion != Vector2(0,0):
 			emit_signal("follow_me", self.global_position)
 		else:
@@ -58,6 +58,7 @@ func _process(_delta):
 		objects_in_hand.append(object_keyword_identifier)
 		match object_keyword_identifier:
 			"key": modulate = Color.aqua
+			"linterna": light2d.show()
 		nearest_object.queue_free()
 		
 	#Sprite movement

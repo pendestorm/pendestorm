@@ -27,7 +27,7 @@ tracks/0/keys = {
 resource_name = "show_negation_label"
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("RichTextLabel:modulate")
+tracks/0/path = NodePath("Node2D/RichTextLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -36,10 +36,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "show_icon"
 length = 0.4
 tracks/0/type = "value"
@@ -49,17 +49,17 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "show_negation_label"
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("RichTextLabel:modulate")
+tracks/0/path = NodePath("Node2D/RichTextLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -71,7 +71,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=6]
 size = 10
 use_filter = true
 font_data = ExtResource( 3 )
@@ -86,6 +86,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
+z_index = 1
 texture = ExtResource( 2 )
 
 [node name="ShowNegation" type="AnimationPlayer" parent="."]
@@ -93,16 +94,20 @@ anims/show_icon = SubResource( 2 )
 anims/show_negation_label = SubResource( 3 )
 
 [node name="ShowIcon" type="AnimationPlayer" parent="."]
-anims/show_icon = SubResource( 5 )
-anims/show_negation_label = SubResource( 6 )
+anims/show_icon = SubResource( 4 )
+anims/show_negation_label = SubResource( 5 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( -0.529732, 15.6271 )
+z_index = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node2D"]
 modulate = Color( 1, 1, 1, 0 )
 margin_left = -35.2921
 margin_top = -23.449
 margin_right = 37.7079
 margin_bottom = 27.551
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 6 )
 bbcode_enabled = true
 bbcode_text = "[center][wave amp=15 freq=2]No tienes el objeto necesario para rescatar al nene[/wave]"
 text = "No tienes el objeto necesario para rescatar al nene"

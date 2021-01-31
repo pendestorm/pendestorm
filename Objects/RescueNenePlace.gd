@@ -26,7 +26,7 @@ func _process(_delta):
 	if not nene_rescued and player_inside_range and Input.is_action_just_pressed("action"):
 		print("you touched me!")
 		for object in SharedVariables.player.objects_in_hand:
-			if object == object_keyword_neccesary:
+			if object == object_keyword_neccesary or object_keyword_neccesary == "":
 				print("you passed")
 				parent.add_child(nene)
 				SharedVariables.scene.add_nenito_to_game(nene)
