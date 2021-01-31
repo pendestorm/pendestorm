@@ -7,11 +7,17 @@ onready var object_detector = $ObjectDetector
 onready var sprite = $Sprite
 onready var light2d = $Light2D
 onready var tween : Tween = $Tween
+onready var anim_player = $AnimationPlayer
+onready var pasos_player = $PasosPlayer
 
 signal follow_me
 signal stop
 
 var last_time_frame := 0
+onready var rng : RandomNumberGenerator = RandomNumberGenerator.new()
+
+export(Array,AudioStream) var pasos_bosque
+export(Array,AudioStream) var pasos_agua
 
 func _ready():
 	SharedVariables.player = self
@@ -21,7 +27,7 @@ func _ready():
 
 
 func _physics_process(_delta):
-	
+	z_index = int(position.y)
 	var motion = Vector2()
 	motion.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	motion.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -76,37 +82,56 @@ func _process(_delta):
 		right = true
 	var current_rotation = light2d.rotation_degrees
 	if down and right:
-		sprite.frame_coords = Vector2(6,0)
+		#sprite.frame_coords = Vector2(6,0)
+		anim_player.play("down_walk")
 		var degrees = select_between_degrees(light2d.rotation_degrees,40)
 		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
 	elif down and left:
-		sprite.frame_coords = Vector2(0,0)
+		#sprite.frame_coords = Vector2(0,0)
+		anim_player.play("down_walk")
 		var degrees = select_between_degrees(light2d.rotation_degrees,140)
 		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
 	elif up and right:
-		sprite.frame_coords = Vector2(4,0)
+		#sprite.frame_coords = Vector2(4,0)
+		anim_player.play("up_right_walk")
 		var degrees = select_between_degrees(light2d.rotation_degrees,-40)
 		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
 	elif up and left:
-		sprite.frame_coords = Vector2(2,0)
+		#sprite.frame_coords = Vector2(2,0)
+		anim_player.play("up_left_walk")
 		var degrees = select_between_degrees(light2d.rotation_degrees,-130)
 		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
 	elif left:
-		sprite.frame_coords = Vector2(1,0)
+		#sprite.frame_coords = Vector2(1,0)
+		anim_player.play("left_walk")
 		var degrees = select_between_degrees(light2d.rotation_degrees,180)
 		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
 	elif up:
-		sprite.frame_coords = Vector2(3,0)
+		#sprite.frame_coords = Vector2(3,0)
+		anim_player.play("up_walk")
 		var degrees = select_between_degrees(light2d.rotation_degrees,-90)
 		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
 	elif right:
-		sprite.frame_coords = Vector2(5,0)
+		#sprite.frame_coords = Vector2(5,0)
+		anim_player.play("right_walk")
 		var degrees = select_between_degrees(light2d.rotation_degrees,0)
 		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
 	elif down:
-		sprite.frame_coords = Vector2(7,0)
+		#sprite.frame_coords = Vector2(7,0)
+		anim_player.play("down_walk")
 		var degrees = select_between_degrees(light2d.rotation_degrees,90)
 		tween.interpolate_property(light2d,"rotation_degrees",current_rotation,degrees,0.1)
+	if not right and not left and not up and not down:
+		anim_player.stop()
+		match sprite.frame:
+			0,1,2,3:
+				sprite.frame = 0
+			4,5,6,7:
+				sprite.frame = 4
+			8,9,10,11:
+				sprite.frame = 8
+			12,13,14,15:
+				sprite.frame = 12
 	tween.start()
 		
 func save_nenitos():
@@ -124,4 +149,11 @@ func select_between_degrees(current,next):
 		return contrary_next
 		
 func choose_walk_sound():
-	pass
+	var wtm = get_parent().world_to_map(position)
+	var cell_id = get_parent().get_parent().get_node("Floor").get_cellv(wtm)
+	if cell_id == 1:
+		pasos_player.stream = pasos_agua[rng.randi_range(0,7)]
+		pasos_player.play()
+	else:
+		pasos_player.stream = pasos_bosque[rng.randi_range(0,6)]
+		pasos_player.play()
