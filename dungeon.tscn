@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://troll.tscn" type="PackedScene" id=2]
@@ -14,8 +14,9 @@
 [ext_resource path="res://SFX/ClimaBackground/Lluvia .wav" type="AudioStream" id=12]
 [ext_resource path="res://Camp.tscn" type="PackedScene" id=13]
 [ext_resource path="res://SFX/ClimaBackground/Trueno.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Music/Pendestorm good ending.wav" type="AudioStream" id=15]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 resource_name = "empezar"
 length = 1.5
 tracks/0/type = "value"
@@ -31,17 +32,17 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=1]
-size = 172
-use_filter = true
-font_data = ExtResource( 4 )
-
 [sub_resource type="DynamicFont" id=2]
 size = 172
 use_filter = true
 font_data = ExtResource( 4 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="DynamicFont" id=3]
+size = 172
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=4]
 length = 227.2
 loop = true
 tracks/0/type = "value"
@@ -214,7 +215,7 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect"]
 autoplay = "empezar"
-anims/empezar = SubResource( 4 )
+anims/empezar = SubResource( 1 )
 
 [node name="Trueno" parent="CanvasLayer" instance=ExtResource( 14 )]
 
@@ -237,7 +238,7 @@ margin_left = -335.0
 margin_top = -102.5
 margin_right = 335.0
 margin_bottom = 102.5
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "GAME OVER"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -253,7 +254,7 @@ margin_left = -241.0
 margin_top = -102.5
 margin_right = 241.0
 margin_bottom = 102.5
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "YOU WIN"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -279,9 +280,14 @@ stream = ExtResource( 12 )
 volume_db = -7.99647
 bus = "Lluvia"
 
+[node name="VictoryPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 15 )
+bus = "Music"
+
 [node name="LoopAudioPlayer" type="AnimationPlayer" parent="."]
 autoplay = "audio_loop"
-anims/audio_loop = SubResource( 3 )
+anims/audio_loop = SubResource( 4 )
 
 [node name="Camp" parent="." instance=ExtResource( 13 )]
 position = Vector2( 0.660988, 152.448 )
