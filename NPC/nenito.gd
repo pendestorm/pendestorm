@@ -8,6 +8,8 @@ export(float) var character_speed = 150.0
 var path = []
 onready var navigation_2d = get_parent().get_parent()
 var motion = Vector2()
+var saved = false
+
 func _init():
 	if Engine.editor_hint: return
 	add_to_group("nenitos")

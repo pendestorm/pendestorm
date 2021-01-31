@@ -26,7 +26,7 @@ void fragment () {
 resource_local_to_scene = true
 shader = SubResource( 1 )
 shader_param/umbral = 0.6
-shader_param/pilotin = Color( 1, 1, 1, 1 )
+shader_param/pilotin = Color( 0, 0, 0, 1 )
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 17.4866

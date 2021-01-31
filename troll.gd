@@ -108,6 +108,7 @@ func save_nenitos():
 	for n in nenitos:
 		disconnect("follow_me", n, "_on_Troll_follow_me")
 		disconnect("stop", n, "_on_Troll_stop")
+		n.saved = true
 	
 func select_between_degrees(current,next):
 	if current == next: return next
