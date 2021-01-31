@@ -22,7 +22,6 @@ func _process(delta):
 func move_along_path(distance):
 	if Engine.editor_hint: return
 	var last_point = self.position
-	update()
 	while path.size():
 		var distance_between_points = last_point.distance_to(path[0])
 		# The position to move to falls between two points.
@@ -31,7 +30,6 @@ func move_along_path(distance):
 			motion.y = (path[0].y - last_point.y)
 			motion = motion.normalized() * character_speed
 			move_and_slide(motion)
-			update()
 			return
 
 		distance -= distance_between_points
