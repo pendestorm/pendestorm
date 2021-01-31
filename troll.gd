@@ -11,6 +11,8 @@ onready var tween : Tween = $Tween
 signal follow_me
 signal stop
 
+var last_time_frame := 0
+
 func _ready():
 	SharedVariables.player = self
 	#Esto es una prueba
@@ -19,6 +21,7 @@ func _ready():
 
 
 func _physics_process(_delta):
+	
 	var motion = Vector2()
 	motion.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	motion.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -26,12 +29,13 @@ func _physics_process(_delta):
 	motion = motion.normalized() * MOTION_SPEED
 	#warning-ignore:return_value_discarded
 	move_and_slide(motion)
-	
-	if motion != Vector2(0,0):
-		emit_signal("follow_me", self.global_position)
-	else:
-		emit_signal("stop")
-		
+
+	if OS.get_ticks_msec() > last_time_frame + 200:
+		if motion != Vector2(0,0):
+			emit_signal("follow_me", self.global_position)
+		else:
+			emit_signal("stop")
+		last_time_frame = OS.get_ticks_msec()
 func add_nenito(nenito):
 	nenitos.append(nenito)
 	nenito.line_pos = nenitos.size()
@@ -117,3 +121,6 @@ func select_between_degrees(current,next):
 		return next
 	else:
 		return contrary_next
+		
+func choose_walk_sound():
+	pass

@@ -1,14 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://troll.gd" type="Script" id=1]
 [ext_resource path="res://NPC/nenitoSpritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Lights/light-lantern.png" type="Texture" id=3]
+[ext_resource path="res://lluvia1.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 26.3083
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 16.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "up_walk"
 
 [node name="Troll" type="KinematicBody2D"]
 collision_layer = 17
@@ -42,15 +46,19 @@ offset = Vector2( 697.265, -47.2021 )
 position = Vector2( 229.161, -640.264 )
 amount = 2000
 lifetime = 4.0
-preprocess = 5.0
 speed_scale = 2.5
 randomness = 0.58
+texture = ExtResource( 4 )
 emission_shape = 2
 emission_rect_extents = Vector2( 800, 1 )
 flag_align_y = true
 direction = Vector2( -1, 0 )
 initial_velocity = 100.0
-scale_amount = 2.0
 color = Color( 0.615686, 1, 1, 1 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/up_walk = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
