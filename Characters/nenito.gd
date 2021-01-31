@@ -1,7 +1,8 @@
 tool
 extends KinematicBody2D
 
-export var pilotin : Color setget color_change
+export var pilotin : Color = Color.white setget color_change
+export var voz_pitch := 1.0 setget voz_pitch_change
 var do_not_follow
 var line_pos
 export(float) var character_speed = 150.0
@@ -9,12 +10,13 @@ var path = []
 onready var navigation_2d = get_parent().get_parent()
 var motion = Vector2()
 var saved = false
+onready var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 
 func _init():
 	if Engine.editor_hint: return
 	add_to_group("nenitos")
 func _ready():
-	pass
+	_on_NenitoVoiceTimer_timeout()
 	
 func _process(delta):
 	if Engine.editor_hint: return
@@ -57,9 +59,20 @@ func _on_Troll_stop():
 	
 func explotar():
 	if Engine.editor_hint: return
-	$Sprite.hide()
+	$SpriteNenito.hide()
 	$CPUParticles2D.emitting = true
 	
 func color_change(color):
 	pilotin = color
-	$Sprite.material.set_shader_param("pilotin",color)
+	$SpriteNenito.material.set_shader_param("pilotin",color)
+
+func voz_pitch_change(pitch):
+	voz_pitch = pitch
+	$AudioStreamPlayer2D.pitch_scale = pitch
+	$AudioStreamPlayer2D.play()
+
+func _on_NenitoVoiceTimer_timeout():
+	if Engine.editor_hint: return
+	$NenitoVoiceTimer.start(rng.randi_range(10,20))
+	$AudioStreamPlayer2D.play()
+	

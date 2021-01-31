@@ -9,6 +9,10 @@ onready var light2d = $Light2D
 onready var tween : Tween = $Tween
 onready var anim_player = $AnimationPlayer
 onready var pasos_player = $PasosPlayer
+export(AudioStream) var linterna_sfx
+export(AudioStream) var cuerda_sfx
+export(AudioStream) var antorcha_sfx
+export(AudioStream) var machete_sfx
 
 signal follow_me
 signal stop
@@ -63,7 +67,15 @@ func _process(_delta):
 		objects_in_hand.append(object_keyword_identifier)
 		match object_keyword_identifier:
 			"key": modulate = Color.aqua
-			"linterna": light2d.show()
+			"linterna": 
+				$SpecialSoundPlayer.stream = linterna_sfx
+				$SpecialSoundPlayer.play()
+				light2d.show()
+			"cuerda": 
+				$SpecialSoundPlayer.stream = cuerda_sfx
+				$SpecialSoundPlayer.play()
+				
+				
 		nearest_object.queue_free()
 		
 	#Sprite movement
@@ -150,9 +162,13 @@ func select_between_degrees(current,next):
 func choose_walk_sound():
 	var wtm = get_parent().world_to_map(position)
 	var cell_id = get_parent().get_parent().get_node("Floor").get_cellv(wtm)
+	pasos_player.pitch_scale = rng.randf_range(1,1.3)
+	pasos_player.volume_db = rng.randi_range(-3,3)
 	if cell_id == 1:
 		pasos_player.stream = pasos_agua[rng.randi_range(0,7)]
+		pasos_player.pitch_scale = rng.randf_range(1,1.3)
 		pasos_player.play()
 	else:
 		pasos_player.stream = pasos_bosque[rng.randi_range(0,6)]
+		
 		pasos_player.play()

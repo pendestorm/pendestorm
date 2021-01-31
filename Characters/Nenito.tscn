@@ -25,7 +25,7 @@ void fragment () {
 resource_local_to_scene = true
 shader = SubResource( 1 )
 shader_param/umbral = 0.6
-shader_param/pilotin = Color( 1, 0.643137, 0.643137, 1 )
+shader_param/pilotin = Color( 1, 1, 1, 1 )
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 17.4866
@@ -33,9 +33,8 @@ radius = 17.4866
 [node name="Nenito" type="KinematicBody2D"]
 position = Vector2( 320.828, 283.198 )
 script = ExtResource( 1 )
-pilotin = Color( 1, 0.643137, 0.643137, 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="SpriteNenito" type="Sprite" parent="."]
 material = SubResource( 2 )
 position = Vector2( -4.47583, -22.1293 )
 scale = Vector2( 0.15, 0.15 )
@@ -60,7 +59,8 @@ shape = SubResource( 3 )
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 
-[node name="Timer" type="Timer" parent="."]
+[node name="NenitoVoiceTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
@@ -79,3 +79,4 @@ initial_velocity = 75.27
 angular_velocity_random = 1.0
 radial_accel = 81.72
 color = Color( 1, 0, 0, 1 )
+[connection signal="timeout" from="NenitoVoiceTimer" to="." method="_on_NenitoVoiceTimer_timeout"]
