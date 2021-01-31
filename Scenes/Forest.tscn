@@ -1,11 +1,16 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://troll.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Nenito.tscn" type="PackedScene" id=3]
+[ext_resource path="res://OtherImages/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Characters/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Characters/Nenito.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Music/pendestorm_theme_song.ogg" type="AudioStream" id=4]
 [ext_resource path="res://SFX/ClimaBackground/Lluvia .wav" type="AudioStream" id=5]
 [ext_resource path="res://Music/Pendestorm opening.wav" type="AudioStream" id=6]
+
+
+
+
+
 
 [sub_resource type="Animation" id=2]
 resource_name = "audio_loop"
