@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://OtherImages/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Characters/Player.tscn" type="PackedScene" id=2]
@@ -20,13 +20,8 @@
 [ext_resource path="res://Music/Pendestorm opening.wav" type="AudioStream" id=18]
 [ext_resource path="res://Objects/rope.png" type="Texture" id=19]
 [ext_resource path="res://Objects/pozo.png" type="Texture" id=20]
-
-
-
-
-
-
-
+[ext_resource path="res://Objects/antorcha.png" type="Texture" id=21]
+[ext_resource path="res://Objects/machete.png" type="Texture" id=22]
 
 [sub_resource type="Animation" id=1]
 resource_name = "empezar"
@@ -226,6 +221,11 @@ position = Vector2( 1.25391, -28.293 )
 scale = Vector2( 0.03, 0.03 )
 texture = ExtResource( 20 )
 
+[node name="RescueNenePlace2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1157.07, 783.716 )
+object_keyword_neccesary = "machete"
+nene_path = NodePath("../Walls/Nenito3")
+
 [node name="Cuerda" parent="." instance=ExtResource( 5 )]
 position = Vector2( 360.18, 592.93 )
 keyword_identifier = "cuerda"
@@ -256,6 +256,31 @@ position = Vector2( 59.4603, 11.8926 )
 scale = Vector2( 0.199457, 0.199457 )
 texture = ExtResource( 17 )
 
+[node name="Antorcha" parent="." instance=ExtResource( 5 )]
+position = Vector2( 768.119, 243.599 )
+keyword_identifier = "antorcha"
+
+[node name="Sprite" type="Sprite" parent="Antorcha"]
+position = Vector2( 0.561157, -5.61229 )
+scale = Vector2( 0.736923, 0.736923 )
+texture = ExtResource( 21 )
+
+[node name="Light2D" type="Light2D" parent="Antorcha/Sprite"]
+position = Vector2( 15.2314, -22.8477 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 17 )
+color = Color( 1, 0.211765, 0, 1 )
+energy = 2.0
+
+[node name="Machete" parent="." instance=ExtResource( 5 )]
+position = Vector2( 871.386, 349.111 )
+keyword_identifier = "machete"
+
+[node name="Sprite" type="Sprite" parent="Machete"]
+position = Vector2( -1.61951, 0.894928 )
+scale = Vector2( 0.561862, 0.561862 )
+texture = ExtResource( 22 )
+
 [node name="Walls" type="TileMap" parent="."]
 mode = 1
 tile_set = ExtResource( 1 )
@@ -276,6 +301,10 @@ pilotin = Color( 1, 0.976471, 0.360784, 1 )
 [node name="Nenito2" parent="Walls" instance=ExtResource( 3 )]
 position = Vector2( 1111.19, 238.581 )
 pilotin = Color( 0.403922, 1, 0.580392, 1 )
+
+[node name="Nenito3" parent="Walls" instance=ExtResource( 3 )]
+position = Vector2( 1171.82, 888.643 )
+pilotin = Color( 0.807843, 0.109804, 0.486275, 1 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
