@@ -178,13 +178,13 @@ position = Vector2( 513.46, 741.611 )
 pilotin = Color( 1, 0.976471, 0.360784, 1 )
 
 [node name="Nenito2" parent="Walls" instance=ExtResource( 3 )]
-position = Vector2( 561.868, 271.339 )
+position = Vector2( 1111.19, 238.581 )
 pilotin = Color( 0.403922, 1, 0.580392, 1 )
 
 [node name="RescueNenePlace" parent="." instance=ExtResource( 10 )]
 position = Vector2( 1042.13, 224.204 )
 object_keyword_neccesary = "key"
-nene = ExtResource( 3 )
+nene_path = NodePath("../Walls/Nenito2")
 
 [node name="Object" parent="." instance=ExtResource( 5 )]
 position = Vector2( 991.173, 279.781 )

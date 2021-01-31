@@ -186,8 +186,8 @@ points = PoolVector2Array( 110.496, 554.401, 97.2338, 560.027, 81.1587, 556.812,
 9/tile_mode = 0
 9/occluder_offset = Vector2( 0, 0 )
 9/navigation_offset = Vector2( 0, 0 )
-9/shape_offset = Vector2( 0, 0 )
-9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+9/shape_offset = Vector2( 0, -260 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, -260 )
 9/shape = SubResource( 8 )
 9/shape_one_way = false
 9/shape_one_way_margin = 1.0
@@ -196,6 +196,6 @@ points = PoolVector2Array( 110.496, 554.401, 97.2338, 560.027, 81.1587, 556.812,
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 8 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, -260 )
 } ]
 9/z_index = 0

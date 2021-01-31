@@ -43,7 +43,10 @@ texture = ExtResource( 3 )
 offset = Vector2( 697.265, -47.2021 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+pause_mode = 2
 position = Vector2( 229.161, -640.264 )
+z_index = 100
+z_as_relative = false
 amount = 2000
 lifetime = 4.0
 speed_scale = 2.5
